@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FATEEN POS System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* توحيد الخط في كامل الموقع */
         body { font-family: 'Inter', 'Tajawal', sans-serif; margin: 0; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* نقوش الخلفية للقسم الأسود */
         .tech-bg-dark {
             background-color: #000000;
             background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
         }
 
-        /* نقوش الخلفية للقسم الأبيض */
         .tech-bg-light {
             background-color: #ffffff;
             background-image: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
@@ -24,12 +23,24 @@
         }
 
         .header-white { background: #ffffff; border-bottom: 1px solid #eee; }
-        .lang-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        /* تنظيف الخط العربي */
+        /* شاشة اختيار اللغة */
+        .lang-overlay { 
+            position: fixed; 
+            inset: 0; 
+            background: #000; 
+            z-index: 9999; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        /* منع تقطيع الخط العربي في كل الموقع */
         [data-lang="ar"] { direction: rtl; }
-        [data-lang="ar"] h2, [data-lang="ar"] h3, [data-lang="ar"] p, [data-lang="ar"] a, [data-lang="ar"] button {
-            letter-spacing: normal !important;
+        [data-lang="ar"] h2, [data-lang="ar"] h3, [data-lang="ar"] p, [data-lang="ar"] a, [data-lang="ar"] button, [data-lang="ar"] footer {
+            letter-spacing: 0 !important;
+            word-spacing: normal !important;
         }
 
         .fade-in { animation: fadeIn 1s ease-in forwards; }
@@ -40,10 +51,12 @@
 
     <div id="langSelector" class="lang-overlay">
         <div class="text-center px-4">
-            <h2 class="text-2xl md:text-4xl mb-12 font-bold text-white uppercase tracking-widest">Select Language / اختر اللغة</h2>
+            <h2 class="text-white text-2xl md:text-4xl mb-12 font-bold uppercase tracking-tight md:tracking-widest">
+                Select Language / اختر اللغة
+            </h2>
             <div class="flex flex-col md:flex-row gap-6 justify-center">
-                <button onclick="setLanguage('en')" class="border border-white px-12 py-4 hover:bg-white hover:text-black transition uppercase text-sm font-bold">English</button>
-                <button onclick="setLanguage('ar')" class="border border-white px-12 py-4 hover:bg-white hover:text-black transition text-sm font-bold font-tajawal">العربية</button>
+                <button onclick="setLanguage('en')" class="border border-white text-white px-12 py-4 hover:bg-white hover:text-black transition uppercase text-sm font-bold">English</button>
+                <button onclick="setLanguage('ar')" class="border border-white text-white px-12 py-4 hover:bg-white hover:text-black transition text-sm font-bold font-tajawal">العربية</button>
             </div>
         </div>
     </div>
@@ -80,7 +93,7 @@
                 <a href="https://wa.me/201273929303" class="text-white hover:text-gray-400 text-xs font-bold uppercase tracking-widest">WhatsApp</a>
                 <a href="tel:+201273929303" class="text-white hover:text-gray-400 text-xs font-bold uppercase tracking-widest">Call</a>
             </div>
-            <footer class="text-gray-600 text-[10px] uppercase tracking-[0.5em]">
+            <footer class="text-gray-400 text-[10px] uppercase tracking-[0.5em] font-bold px-4">
                 <p>© 2026 FATEEN POS SYSTEM - ASWAN, EGYPT</p>
             </footer>
         </section>
@@ -117,7 +130,6 @@
         function setLanguage(lang) {
             document.documentElement.lang = lang;
             document.body.setAttribute('data-lang', lang);
-            
             document.getElementById('heroSub').innerText = content[lang].heroSub;
             document.getElementById('btnWa').innerText = content[lang].btnWa;
             document.getElementById('btnSer').innerText = content[lang].btnSer;
