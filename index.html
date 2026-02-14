@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FATEEN POS System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --primary-bg: #000000; }
-        /* توحيد الفونت على مستوى الموقع بالكامل */
         body { font-family: 'Inter', 'Tajawal', sans-serif; background-color: var(--primary-bg); color: #ffffff; scroll-behavior: smooth; overflow-x: hidden; margin: 0; }
         
         .tech-bg {
@@ -25,11 +24,18 @@
             border-bottom: 1px solid #ddd;
         }
         
+        /* حل مشكلة تنقيط وتقطيع الخط العربي */
+        [data-lang="ar"] { 
+            direction: rtl; 
+        }
+        [data-lang="ar"] h2, [data-lang="ar"] h3, [data-lang="ar"] p, [data-lang="ar"] a, [data-lang="ar"] button {
+            letter-spacing: normal !important; /* يلغي التنقيط المسافات بين الحروف */
+            word-spacing: normal !important;
+        }
+
         .lang-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .card-black { background: rgba(10, 10, 10, 0.9); border: 1px solid #222; transition: all 0.4s ease; }
         
-        [data-lang="ar"] { direction: rtl; }
-        [data-lang="en"] { direction: ltr; }
         .fade-in { animation: fadeIn 1s ease-in forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -38,10 +44,10 @@
 
     <div id="langSelector" class="lang-overlay">
         <div class="text-center px-4">
-            <h2 class="text-2xl md:text-4xl mb-12 tracking-[0.2em] uppercase font-bold text-white">Language / اللغة</h2>
+            <h2 class="text-2xl md:text-4xl mb-12 uppercase font-bold text-white tracking-[0.1em]">Language / اللغة</h2>
             <div class="flex flex-col md:flex-row gap-6 justify-center">
                 <button onclick="setLanguage('en')" class="border border-white px-12 py-4 hover:bg-white hover:text-black transition uppercase text-sm font-bold tracking-widest">English</button>
-                <button onclick="setLanguage('ar')" class="border border-white px-12 py-4 hover:bg-white hover:text-black transition text-sm font-bold font-tajawal tracking-widest">العربية</button>
+                <button onclick="setLanguage('ar')" class="border border-white px-12 py-4 hover:bg-white hover:text-black transition text-sm font-bold font-tajawal">العربية</button>
             </div>
         </div>
     </div>
@@ -57,22 +63,22 @@
 
         <section class="min-h-[85vh] flex flex-col justify-center items-center text-center p-8">
             <img src="لوجو فطين ابيض.png" alt="Hero Logo" class="w-72 md:w-[500px] mb-12 drop-shadow-xl">
-            <h2 id="heroSub" class="text-white text-base md:text-xl font-medium tracking-[0.3em] uppercase mb-12 px-4">
+            <h2 id="heroSub" class="text-white text-base md:text-xl font-medium mb-12 px-4 leading-relaxed">
                 INTELLIGENT POINT OF SALE SOLUTIONS
             </h2>
             <div class="flex flex-wrap justify-center gap-6">
-                <a href="https://wa.me/201273929303" id="btnWa" class="bg-white text-black px-12 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-all shadow-xl">Whatsapp</a>
-                <a href="#services" id="btnSer" class="border border-white text-white px-12 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Services</a>
+                <a href="https://wa.me/201273929303" id="btnWa" class="bg-white text-black px-12 py-4 text-xs font-bold uppercase hover:bg-gray-100 transition-all shadow-xl">Whatsapp</a>
+                <a href="#services" id="btnSer" class="border border-white text-white px-12 py-4 text-xs font-bold uppercase hover:bg-white hover:text-black transition-all">Services</a>
             </div>
         </section>
 
         <section id="services" class="py-24 px-8 max-w-7xl mx-auto">
-            <h2 id="serTitle" class="text-center text-2xl font-bold uppercase tracking-[0.4em] mb-20">Expertise</h2>
+            <h2 id="serTitle" class="text-center text-2xl font-bold mb-20">Expertise</h2>
             <div id="servicesGrid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 </div>
         </section>
 
-        <footer class="py-16 border-t border-white/5 text-center text-gray-600 text-[10px] tracking-[0.5em] uppercase">
+        <footer class="py-16 border-t border-white/5 text-center text-gray-600 text-[10px] uppercase">
             <p>© 2026 FATEEN POS SYSTEM - ASWAN, EGYPT</p>
         </footer>
     </div>
@@ -92,7 +98,7 @@
                 ]
             },
             ar: {
-                heroSub: "حلول نقاط البيع الذكية المتكاملة",
+                heroSub: "حلول نقاط البيع الذكية المتكاملة للمؤسسات",
                 btnWa: "تحدث معنا",
                 btnSer: "خدماتنا",
                 serTitle: "مجالات الخبرة",
@@ -117,7 +123,7 @@
             const grid = document.getElementById('servicesGrid');
             grid.innerHTML = content[lang].services.map(s => `
                 <div class="card-black p-10 text-center">
-                    <h3 class="text-sm font-bold mb-6 uppercase tracking-widest text-white">${s.t}</h3>
+                    <h3 class="text-sm font-bold mb-6 uppercase text-white">${s.t}</h3>
                     <p class="text-gray-400 text-xs md:text-sm leading-relaxed font-normal">${s.d}</p>
                 </div>
             `).join('');
