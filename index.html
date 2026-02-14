@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FATEEN POS System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --primary-bg: #000000; }
+        /* توحيد الفونت على مستوى الموقع بالكامل */
         body { font-family: 'Inter', 'Tajawal', sans-serif; background-color: var(--primary-bg); color: #ffffff; scroll-behavior: smooth; overflow-x: hidden; margin: 0; }
         
         .tech-bg {
@@ -17,17 +18,15 @@
             background-size: 50px 50px;
         }
 
-        /* هيدر أبيض بتأثير زجاجي */
         .glass-header-white { 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #ddd;
         }
         
         .lang-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .card-black { background: rgba(10, 10, 10, 0.9); border: 1px solid #222; transition: all 0.4s ease; }
-        .card-black:hover { border-color: #fff; transform: translateY(-8px); }
         
         [data-lang="ar"] { direction: rtl; }
         [data-lang="en"] { direction: ltr; }
@@ -39,41 +38,41 @@
 
     <div id="langSelector" class="lang-overlay">
         <div class="text-center px-4">
-            <h2 class="text-3xl md:text-5xl mb-16 tracking-[0.2em] uppercase font-bold text-white">Language / اللغة</h2>
-            <div class="flex flex-col md:flex-row gap-8 justify-center">
-                <button onclick="setLanguage('en')" class="border-2 border-white px-16 py-5 hover:bg-white hover:text-black transition uppercase text-lg font-black tracking-widest">English</button>
-                <button onclick="setLanguage('ar')" class="border-2 border-white px-16 py-5 hover:bg-white hover:text-black transition text-lg font-black font-tajawal tracking-widest">العربية</button>
+            <h2 class="text-2xl md:text-4xl mb-12 tracking-[0.2em] uppercase font-bold text-white">Language / اللغة</h2>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button onclick="setLanguage('en')" class="border border-white px-12 py-4 hover:bg-white hover:text-black transition uppercase text-sm font-bold tracking-widest">English</button>
+                <button onclick="setLanguage('ar')" class="border border-white px-12 py-4 hover:bg-white hover:text-black transition text-sm font-bold font-tajawal tracking-widest">العربية</button>
             </div>
         </div>
     </div>
 
     <div id="mainContent" class="hidden fade-in">
         
-        <nav class="py-5 px-8 md:px-16 flex justify-between items-center glass-header-white sticky top-0 z-50">
-            <img src="لوجو فطين اسود.png" alt="Logo" class="h-14 md:h-20 w-auto object-contain">
-            <div class="flex items-center gap-8">
-                <a href="https://wa.me/201273929303" class="bg-black text-white px-8 py-4 text-sm font-black uppercase tracking-widest hover:bg-gray-700 transition shadow-lg">Contact</a>
+        <nav class="py-3 px-6 md:px-12 flex justify-between items-center glass-header-white sticky top-0 z-50">
+            <img src="لوجو فطين اسود.png" alt="Logo" class="h-10 md:h-14 w-auto">
+            <div class="flex items-center gap-6">
+                <a href="https://wa.me/201273929303" class="bg-black text-white px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-700 transition">Contact</a>
             </div>
         </nav>
 
-        <section class="min-h-[90vh] flex flex-col justify-center items-center text-center p-8">
-            <img src="لوجو فطين ابيض.png" alt="Hero Logo" class="w-80 md:w-[600px] mb-16 drop-shadow-2xl">
-            <h2 id="heroSub" class="text-white text-lg md:text-2xl font-bold tracking-[0.5em] uppercase mb-16 px-4 leading-relaxed">
+        <section class="min-h-[85vh] flex flex-col justify-center items-center text-center p-8">
+            <img src="لوجو فطين ابيض.png" alt="Hero Logo" class="w-72 md:w-[500px] mb-12 drop-shadow-xl">
+            <h2 id="heroSub" class="text-white text-base md:text-xl font-medium tracking-[0.3em] uppercase mb-12 px-4">
                 INTELLIGENT POINT OF SALE SOLUTIONS
             </h2>
-            <div class="flex flex-wrap justify-center gap-8">
-                <a href="https://wa.me/201273929303" id="btnWa" class="bg-white text-black px-16 py-6 text-sm font-black uppercase tracking-[0.2em] hover:bg-gray-200 transition-all shadow-2xl scale-110">Whatsapp</a>
-                <a href="#services" id="btnSer" class="border-2 border-white text-white px-16 py-6 text-sm font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all scale-110">Services</a>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="https://wa.me/201273929303" id="btnWa" class="bg-white text-black px-12 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-all shadow-xl">Whatsapp</a>
+                <a href="#services" id="btnSer" class="border border-white text-white px-12 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Services</a>
             </div>
         </section>
 
-        <section id="services" class="py-32 px-10 max-w-7xl mx-auto">
-            <h2 id="serTitle" class="text-center text-4xl font-black uppercase tracking-[0.4em] mb-28">Expertise</h2>
-            <div id="servicesGrid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <section id="services" class="py-24 px-8 max-w-7xl mx-auto">
+            <h2 id="serTitle" class="text-center text-2xl font-bold uppercase tracking-[0.4em] mb-20">Expertise</h2>
+            <div id="servicesGrid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 </div>
         </section>
 
-        <footer class="py-20 border-t border-white/5 text-center text-gray-500 text-xs tracking-[0.7em] uppercase">
+        <footer class="py-16 border-t border-white/5 text-center text-gray-600 text-[10px] tracking-[0.5em] uppercase">
             <p>© 2026 FATEEN POS SYSTEM - ASWAN, EGYPT</p>
         </footer>
     </div>
@@ -82,9 +81,9 @@
         const content = {
             en: {
                 heroSub: "INTELLIGENT POINT OF SALE SOLUTIONS",
-                btnWa: "Start Conversation",
+                btnWa: "Start Chat",
                 btnSer: "Our Services",
-                serTitle: "Elite Expertise",
+                serTitle: "Our Expertise",
                 services: [
                     { t: "POS Systems", d: "Professional grade systems for retail and hospitality, engineered for speed and stability." },
                     { t: "AI Insights", d: "Advanced data analytics to forecast growth and optimize your business operations." },
@@ -93,15 +92,15 @@
                 ]
             },
             ar: {
-                heroSub: "حلول نقاط البيع الذكية المتكاملة للمؤسسات",
-                btnWa: "تحدث معنا الآن",
-                btnSer: "خدماتنا المتميزة",
-                serTitle: "مجالات التميز",
+                heroSub: "حلول نقاط البيع الذكية المتكاملة",
+                btnWa: "تحدث معنا",
+                btnSer: "خدماتنا",
+                serTitle: "مجالات الخبرة",
                 services: [
                     { t: "نظم الكاشير", d: "أنظمة برمجية فائقة الأداء مصممة خصيصاً للمحلات والمطاعم الكبرى." },
                     { t: "ذكاء الأعمال", d: "تحليلات متطورة مبنية على الذكاء الاصطناعي لتوقع الأرباح والنمو." },
                     { t: "التحكم السحابي", d: "إدارة شاملة لعملك من أي مكان مع أعلى معايير أمان البيانات." },
-                    { t: "دعم فني نخبو", d: "فريق من الخبراء التقنيين متاحين لخدمتك على مدار الساعة." }
+                    { t: "دعم فني", d: "فريق من الخبراء التقنيين متاحين لخدمتك على مدار الساعة." }
                 ]
             }
         };
@@ -117,9 +116,9 @@
 
             const grid = document.getElementById('servicesGrid');
             grid.innerHTML = content[lang].services.map(s => `
-                <div class="card-black p-14 text-center">
-                    <h3 class="text-lg font-black mb-8 uppercase tracking-widest text-white">${s.t}</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-normal">${s.d}</p>
+                <div class="card-black p-10 text-center">
+                    <h3 class="text-sm font-bold mb-6 uppercase tracking-widest text-white">${s.t}</h3>
+                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed font-normal">${s.d}</p>
                 </div>
             `).join('');
 
